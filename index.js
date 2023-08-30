@@ -23,53 +23,36 @@ function switchTab(newTab) {
         oldTab.classList.add("current-tab");
 
         if(!searchForm.classList.contains("active")) {
-<<<<<<< HEAD
            
-=======
-         
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
             userInfoContainer.classList.remove("active");
             grantAccessContainer.classList.remove("active");
             searchForm.classList.add("active");
         }
         else {
-<<<<<<< HEAD
               
             searchForm.classList.remove("active");
             userInfoContainer.classList.remove("active");
           
-=======
-           
-            searchForm.classList.remove("active");
-            userInfoContainer.classList.remove("active");
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
             getfromSessionStorage();
         }
     }
 }
 
 userTab.addEventListener("click", () => {
-<<<<<<< HEAD
   
-=======
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
     switchTab(userTab);
 });
 
 searchTab.addEventListener("click", () => {
-<<<<<<< HEAD
   
     switchTab(searchTab);
 });
 
 
-=======
-    switchTab(searchTab);
-});
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
 function getfromSessionStorage() {
     const localCoordinates = sessionStorage.getItem("user-coordinates");
     if(!localCoordinates) {
+        //agar local coordinates nahi mile
         grantAccessContainer.classList.add("active");
     }
     else {
@@ -82,10 +65,7 @@ function getfromSessionStorage() {
 async function fetchUserWeatherInfo(coordinates) {
     const {lat, lon} = coordinates;
     grantAccessContainer.classList.remove("active");
-<<<<<<< HEAD
 
-=======
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
     loadingScreen.classList.add("active");
 
     //API CALL
@@ -101,16 +81,15 @@ async function fetchUserWeatherInfo(coordinates) {
     }
     catch(err) {
         loadingScreen.classList.remove("active");
+        //HW
+
     }
 
 }
 
 function renderWeatherInfo(weatherInfo) {
-<<<<<<< HEAD
 
 
-=======
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
     const cityName = document.querySelector("[data-cityName]");
     const countryIcon = document.querySelector("[data-countryIcon]");
     const desc = document.querySelector("[data-weatherDesc]");
@@ -121,11 +100,8 @@ function renderWeatherInfo(weatherInfo) {
     const cloudiness = document.querySelector("[data-cloudiness]");
 
     console.log(weatherInfo);
-<<<<<<< HEAD
 
    
-=======
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
     cityName.innerText = weatherInfo?.name;
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
     desc.innerText = weatherInfo?.weather?.[0]?.description;
@@ -143,11 +119,7 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else {
-<<<<<<< HEAD
       
-=======
-       alert("Location not found");
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
     }
 }
 
@@ -193,9 +165,6 @@ async function fetchSearchWeatherInfo(city) {
         renderWeatherInfo(data);
     }
     catch(err) {
-<<<<<<< HEAD
        
-=======
->>>>>>> b91ab6fa6b69b71960f72c0606f6054773ff5466
     }
 }
