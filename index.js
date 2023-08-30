@@ -9,6 +9,10 @@ const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
 
+const errorContainer = document.querySelector(".error-container");
+
+
+
 // intially variables needs
 
 let oldTab = userTab;
@@ -81,6 +85,7 @@ async function fetchUserWeatherInfo(coordinates) {
     }
     catch(err) {
         loadingScreen.classList.remove("active");
+        errorContainer.classList.add("active"); 
         //HW
 
     }
@@ -144,27 +149,37 @@ searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let cityName = searchInput.value;
 
-    if(cityName === "")
+    if (cityName === "") {
         return;
-    else 
+    } else {
         fetchSearchWeatherInfo(cityName);
-})
+        searchInput.value = ""; // Clear the input field
+    }
+});
+
 
 async function fetchSearchWeatherInfo(city) {
     loadingScreen.classList.add("active");
-    userInfoContainer.classList.remove("active");
-    grantAccessContainer.classList.remove("active");
+    userInfoContainer.classList.remove("active"); // Hide user info container
+    grantAccessContainer.classList.remove("active"); // Hide grant access container
+    errorContainer.classList.remove("active"); // Hide error container if previously shown
 
     try {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-          );
-        const data = await response.json();
+        );
+        if (response.ok) {
+            const data = await response.json();
+            loadingScreen.classList.remove("active");
+            userInfoContainer.classList.add("active");
+            renderWeatherInfo(data);
+        } else {
+            loadingScreen.classList.remove("active");
+            errorContainer.classList.add("active"); // Show error container
+        }
+    } catch (err) {
         loadingScreen.classList.remove("active");
-        userInfoContainer.classList.add("active");
-        renderWeatherInfo(data);
-    }
-    catch(err) {
-       
+        errorContainer.classList.add("active"); // Show error container
     }
 }
+
