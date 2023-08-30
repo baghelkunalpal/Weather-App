@@ -1,6 +1,6 @@
 # Weather App
 
-![App Screenshot](![image](https://github.com/baghelkunalpal/Weather-App/assets/126814924/2749a3e3-5f57-4a0a-83b4-1d2211359496)
+![App Screenshot](![image](./screenshot/Screenshot%202023-08-30%20123827.png)
 )
 
 The Weather App is a simple and intuitive application that provides real-time weather information to users. It helps users stay informed about the current weather conditions, forecasts, and more.
